@@ -1,7 +1,7 @@
 # coding: utf-8
 import os
 import sys
-sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
+sys.path.append(os.pardir) 
 import numpy as np
 import matplotlib.pyplot as plt
 from dataset.mnist import load_mnist
@@ -15,7 +15,7 @@ x_train = x_train[:300]
 t_train = t_train[:300]
 
 # Dropuoutの有無、割り合いの設定 ========================
-use_dropout = True  # Dropoutなしのときの場合はFalseに
+use_dropout = True 
 dropout_ratio = 0.2
 # ====================================================
 

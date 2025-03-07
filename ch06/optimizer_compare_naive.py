@@ -1,6 +1,6 @@
 # coding: utf-8
 import sys, os
-sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
+sys.path.append(os.pardir) 
 import numpy as np
 import matplotlib.pyplot as plt
 from collections import OrderedDict
@@ -49,11 +49,11 @@ for key in optimizers:
     X, Y = np.meshgrid(x, y) 
     Z = f(X, Y)
     
-    # for simple contour line  
+   
     mask = Z > 7
     Z[mask] = 0
     
-    # plot 
+   
     plt.subplot(2, 2, idx)
     idx += 1
     plt.plot(x_history, y_history, 'o-', color="red")
@@ -61,8 +61,8 @@ for key in optimizers:
     plt.ylim(-10, 10)
     plt.xlim(-10, 10)
     plt.plot(0, 0, '+')
-    #colorbar()
-    #spring()
+   
+   
     plt.title(key)
     plt.xlabel("x")
     plt.ylabel("y")

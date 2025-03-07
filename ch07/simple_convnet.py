@@ -1,6 +1,6 @@
 # coding: utf-8
 import sys, os
-sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
+sys.path.append(os.pardir) 
 import pickle
 import numpy as np
 from collections import OrderedDict
@@ -9,20 +9,7 @@ from common.gradient import numerical_gradient
 
 
 class SimpleConvNet:
-    """単純なConvNet
 
-    conv - relu - pool - affine - relu - affine - softmax
-    
-    Parameters
-    ----------
-    input_size : 入力サイズ（MNISTの場合は784）
-    hidden_size_list : 隠れ層のニューロンの数のリスト（e.g. [100, 100, 100]）
-    output_size : 出力サイズ（MNISTの場合は10）
-    activation : 'relu' or 'sigmoid'
-    weight_init_std : 重みの標準偏差を指定（e.g. 0.01）
-        'relu'または'he'を指定した場合は「Heの初期値」を設定
-        'sigmoid'または'xavier'を指定した場合は「Xavierの初期値」を設定
-    """
     def __init__(self, input_dim=(1, 28, 28), 
                  conv_param={'filter_num':30, 'filter_size':5, 'pad':0, 'stride':1},
                  hidden_size=100, output_size=10, weight_init_std=0.01):
@@ -34,7 +21,7 @@ class SimpleConvNet:
         conv_output_size = (input_size - filter_size + 2*filter_pad) / filter_stride + 1
         pool_output_size = int(filter_num * (conv_output_size/2) * (conv_output_size/2))
 
-        # 重みの初期化
+       
         self.params = {}
         self.params['W1'] = weight_init_std * \
                             np.random.randn(filter_num, input_dim[0], filter_size, filter_size)
@@ -46,7 +33,7 @@ class SimpleConvNet:
                             np.random.randn(hidden_size, output_size)
         self.params['b3'] = np.zeros(output_size)
 
-        # レイヤの生成
+       
         self.layers = OrderedDict()
         self.layers['Conv1'] = Convolution(self.params['W1'], self.params['b1'],
                                            conv_param['stride'], conv_param['pad'])
@@ -122,10 +109,10 @@ class SimpleConvNet:
             grads['W1']、grads['W2']、...は各層の重み
             grads['b1']、grads['b2']、...は各層のバイアス
         """
-        # forward
+       
         self.loss(x, t)
 
-        # backward
+       
         dout = 1
         dout = self.last_layer.backward(dout)
 
@@ -134,7 +121,7 @@ class SimpleConvNet:
         for layer in layers:
             dout = layer.backward(dout)
 
-        # 設定
+       
         grads = {}
         grads['W1'], grads['b1'] = self.layers['Conv1'].dW, self.layers['Conv1'].db
         grads['W2'], grads['b2'] = self.layers['Affine1'].dW, self.layers['Affine1'].db

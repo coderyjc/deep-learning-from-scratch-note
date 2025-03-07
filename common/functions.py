@@ -29,7 +29,7 @@ def relu_grad(x):
 
 
 def softmax(x):
-    x = x - np.max(x, axis=-1, keepdims=True)   # オーバーフロー対策
+    x = x - np.max(x, axis=-1, keepdims=True)  
     return np.exp(x) / np.sum(np.exp(x), axis=-1, keepdims=True)
 
 
@@ -42,7 +42,7 @@ def cross_entropy_error(y, t):
         t = t.reshape(1, t.size)
         y = y.reshape(1, y.size)
 
-    # 教師データがone-hot-vectorの場合、正解ラベルのインデックスに変換
+   
     if t.size == y.size:
         t = t.argmax(axis=1)
 

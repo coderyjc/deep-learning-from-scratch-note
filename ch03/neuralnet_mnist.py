@@ -1,6 +1,6 @@
 # coding: utf-8
 import sys, os
-sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
+sys.path.append(os.pardir) 
 import numpy as np
 import pickle
 from dataset.mnist import load_mnist
@@ -37,7 +37,7 @@ network = init_network()
 accuracy_cnt = 0
 for i in range(len(x)):
     y = predict(network, x[i])
-    p= np.argmax(y) # 最も確率の高い要素のインデックスを取得
+    p= np.argmax(y)
     if p == t[i]:
         accuracy_cnt += 1
 

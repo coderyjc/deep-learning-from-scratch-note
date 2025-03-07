@@ -1,6 +1,6 @@
 # coding: utf-8
 import sys, os
-sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
+sys.path.append(os.pardir) 
 import numpy as np
 import matplotlib.pyplot as plt
 from simple_convnet import SimpleConvNet
@@ -40,7 +40,7 @@ w_idx = 1
 
 for i in range(16):
     w = network.params['W1'][i]
-    b = 0  # network.params['b1'][i]
+    b = 0 
 
     w = w.reshape(1, *w.shape)
     #b = b.reshape(1, *b.shape)

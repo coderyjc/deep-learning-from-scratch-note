@@ -1,75 +1,34 @@
-ゼロから作る Deep Learning
-==========================
+> 原著GitHub仓库：https://github.com/oreilly-japan/deep-learning-from-scratch
 
+# 深度学习入门：基于Python的理论和实现
 
-[<img src="https://raw.githubusercontent.com/oreilly-japan/deep-learning-from-scratch/images/deep-learning-from-scratch.png" width="200px">](https://www.oreilly.co.jp/books/9784873117584/)
+<img src="https://img9.doubanio.com/view/subject/l/public/s29815955.jpg" width="200px">
 
-書籍『[ゼロから作る Deep Learning](http://www.oreilly.co.jp/books/9784873117584/)』(オライリー・ジャパン発行)のサポートサイトです。本書籍で使用するソースコードがまとめられています。
+## 目录
 
+|目录 |説明                    |
+|:--        |:--              |
+|ch01       |第一章相关代码    |
+|ch02       |第二章相关代码    |
+|...        |...              |
+|ch08       |第八章相关代码    |
+|common     |共用的代码   |
+|dataset    |数据集的代码 |
+|notebooks    |ipynb格式的代码（jupyter notebook 使用） |
 
+## 环境
 
-## ファイル構成
+- Python 3.12.3
+- NumPy
+- Matplotlib
 
-|フォルダ名 |説明                         |
-|:--        |:--                          |
-|ch01       |1章で使用するソースコード    |
-|ch02       |2章で使用するソースコード    |
-|...        |...                          |
-|ch08       |8章で使用するソースコード    |
-|common     |共通で使用するソースコード   |
-|dataset    |データセット用のソースコード |
+pip安装方式
 
-
-ソースコードの解説は本書籍をご覧ください。
-
-## Pythonと外部ライブラリ
-ソースコードを実行するには、下記のソフトウェアが必要です。
-
-* Python 3.x
-* NumPy
-* Matplotlib
-
-※Pythonのバージョンは、3系を利用します。
-
-## 実行方法
-
-各章のフォルダへ移動して、Pythonコマンドを実行します。
-
+```bash
+conda install numpy matplotlib
 ```
-$ cd ch01
-$ python man.py
+conda安装方式
 
-$ cd ../ch05
-$ python train_nueralnet.py
+```bash
+pip install numpy matplotlib
 ```
-
-## クラウドサービスでの実行
-
-本書のコードは次の表にあるボタンをクリックすることで、AWSの無料の計算環境である[Amazon SageMaker Studio Lab](https://studiolab.sagemaker.aws/)上に実行できます(事前に[メールアドレスによる登録](https://studiolab.sagemaker.aws/requestAccount)が必要です)。SageMaker Studio Labの使い方は[こちら](https://github.com/aws-sagemaker-jp/awesome-studio-lab-jp/blob/main/README_usage.md)をご覧ください。[Amazon SageMaker Studio Lab Community](https://github.com/aws-studiolab-jp/awesome-studio-lab-jp)で最新情報が取得できます。
-
-|フォルダ名 |Amazon SageMaker Studio Lab
-|:--        |:--                          |
-|ch01       |[![Open In SageMaker Studio Lab](https://studiolab.sagemaker.aws/studiolab.svg)](https://studiolab.sagemaker.aws/import/github/oreilly-japan/deep-learning-from-scratch/blob/master/notebooks/ch01.ipynb)|
-|ch02       |[![Open In SageMaker Studio Lab](https://studiolab.sagemaker.aws/studiolab.svg)](https://studiolab.sagemaker.aws/import/github/oreilly-japan/deep-learning-from-scratch/blob/master/notebooks/ch02.ipynb)|
-|ch03       |[![Open In SageMaker Studio Lab](https://studiolab.sagemaker.aws/studiolab.svg)](https://studiolab.sagemaker.aws/import/github/oreilly-japan/deep-learning-from-scratch/blob/master/notebooks/ch03.ipynb)|
-|ch04       |[![Open In SageMaker Studio Lab](https://studiolab.sagemaker.aws/studiolab.svg)](https://studiolab.sagemaker.aws/import/github/oreilly-japan/deep-learning-from-scratch/blob/master/notebooks/ch04.ipynb)|
-|ch05       |[![Open In SageMaker Studio Lab](https://studiolab.sagemaker.aws/studiolab.svg)](https://studiolab.sagemaker.aws/import/github/oreilly-japan/deep-learning-from-scratch/blob/master/notebooks/ch05.ipynb)|
-|ch06       |[![Open In SageMaker Studio Lab](https://studiolab.sagemaker.aws/studiolab.svg)](https://studiolab.sagemaker.aws/import/github/oreilly-japan/deep-learning-from-scratch/blob/master/notebooks/ch06.ipynb)|
-|ch07       |[![Open In SageMaker Studio Lab](https://studiolab.sagemaker.aws/studiolab.svg)](https://studiolab.sagemaker.aws/import/github/oreilly-japan/deep-learning-from-scratch/blob/master/notebooks/ch07.ipynb)|
-|ch08       |[![Open In SageMaker Studio Lab](https://studiolab.sagemaker.aws/studiolab.svg)](https://studiolab.sagemaker.aws/import/github/oreilly-japan/deep-learning-from-scratch/blob/master/notebooks/ch08.ipynb)|
-|common       |[![Open In SageMaker Studio Lab](https://studiolab.sagemaker.aws/studiolab.svg)](https://studiolab.sagemaker.aws/import/github/oreilly-japan/deep-learning-from-scratch/blob/master/notebooks/common.ipynb)|
-
-
-## ライセンス
-
-本リポジトリのソースコードは[MITライセンス](http://www.opensource.org/licenses/MIT)です。
-商用・非商用問わず、自由にご利用ください。
-
-## 正誤表
-
-本書の正誤情報は以下のページで公開しています。
-
-https://github.com/oreilly-japan/deep-learning-from-scratch/wiki/errata
-
-本ページに掲載されていない誤植など間違いを見つけた方は、[japan@oreilly.co.jp](<mailto:japan@oreilly.co.jp>)までお知らせください。
-

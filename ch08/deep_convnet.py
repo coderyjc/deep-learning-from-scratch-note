@@ -1,6 +1,6 @@
 # coding: utf-8
 import sys, os
-sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
+sys.path.append(os.pardir) 
 import pickle
 import numpy as np
 from collections import OrderedDict
@@ -24,10 +24,10 @@ class DeepConvNet:
                  conv_param_5 = {'filter_num':64, 'filter_size':3, 'pad':1, 'stride':1},
                  conv_param_6 = {'filter_num':64, 'filter_size':3, 'pad':1, 'stride':1},
                  hidden_size=50, output_size=10):
-        # 重みの初期化===========
-        # 各層のニューロンひとつあたりが、前層のニューロンといくつのつながりがあるか（TODO:自動で計算する）
+       
+       
         pre_node_nums = np.array([1*3*3, 16*3*3, 16*3*3, 32*3*3, 32*3*3, 64*3*3, 64*4*4, hidden_size])
-        weight_init_scales = np.sqrt(2.0 / pre_node_nums)  # ReLUを使う場合に推奨される初期値
+        weight_init_scales = np.sqrt(2.0 / pre_node_nums) 
         
         self.params = {}
         pre_channel_num = input_dim[0]
@@ -40,7 +40,7 @@ class DeepConvNet:
         self.params['W8'] = weight_init_scales[7] * np.random.randn(hidden_size, output_size)
         self.params['b8'] = np.zeros(output_size)
 
-        # レイヤの生成===========
+       
         self.layers = []
         self.layers.append(Convolution(self.params['W1'], self.params['b1'], 
                            conv_param_1['stride'], conv_param_1['pad']))
@@ -98,10 +98,10 @@ class DeepConvNet:
         return acc / x.shape[0]
 
     def gradient(self, x, t):
-        # forward
+       
         self.loss(x, t)
 
-        # backward
+       
         dout = 1
         dout = self.last_layer.backward(dout)
 
@@ -110,7 +110,7 @@ class DeepConvNet:
         for layer in tmp_layers:
             dout = layer.backward(dout)
 
-        # 設定
+       
         grads = {}
         for i, layer_idx in enumerate((0, 2, 5, 7, 10, 12, 15, 18)):
             grads['W' + str(i+1)] = self.layers[layer_idx].dW
