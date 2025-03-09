@@ -2,7 +2,9 @@
 
 # 深度学习入门：基于Python的理论和实现
 
-<img src="./img/coverjpg.jpg" width="200px">
+<div align=center>
+<img src="./img/cover.jpg" width="200px">
+</div>
 
 本仓库从原著的github仓库fork而来，编写本书代码的中文注释。
 
@@ -46,6 +48,9 @@ pip install numpy matplotlib
 - 删除所有日文注释，为所有代码添加详细的**中文**注释。
 - 将lena.png图片替换为本书的封面，以避免侵权。
 - 本项目使用vscode编写，所有的路径都是以当前打开的路径为基准的，也就是说'./'目录为'项目根目录'
+
+【Delete】
+- 删除notebooks中的注释
 
 ## 致谢
 
