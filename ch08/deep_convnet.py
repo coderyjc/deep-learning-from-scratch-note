@@ -7,15 +7,9 @@ from collections import OrderedDict
 from common.layers import *
 
 
+# 定义一个名为DeepConvNet的深度卷积神经网络类
 class DeepConvNet:
-    """認識率99%以上の高精度なConvNet
-
-    ネットワーク構成は下記の通り
-        conv - relu - conv- relu - pool -
-        conv - relu - conv- relu - pool -
-        conv - relu - conv- relu - pool -
-        affine - relu - dropout - affine - dropout - softmax
-    """
+    # 初始化方法，设置网络的输入维度和卷积参数
     def __init__(self, input_dim=(1, 28, 28),
                  conv_param_1 = {'filter_num':16, 'filter_size':3, 'pad':1, 'stride':1},
                  conv_param_2 = {'filter_num':16, 'filter_size':3, 'pad':1, 'stride':1},
@@ -25,23 +19,29 @@ class DeepConvNet:
                  conv_param_6 = {'filter_num':64, 'filter_size':3, 'pad':1, 'stride':1},
                  hidden_size=50, output_size=10):
        
-       
+        # 计算每层卷积层的输入节点数
         pre_node_nums = np.array([1*3*3, 16*3*3, 16*3*3, 32*3*3, 32*3*3, 64*3*3, 64*4*4, hidden_size])
+        # 根据输入节点数计算权重初始化比例
         weight_init_scales = np.sqrt(2.0 / pre_node_nums) 
         
+        # 初始化参数字典
         self.params = {}
+        # 设置初始输入通道数
         pre_channel_num = input_dim[0]
+        # 遍历卷积参数，初始化每层的权重和偏置
         for idx, conv_param in enumerate([conv_param_1, conv_param_2, conv_param_3, conv_param_4, conv_param_5, conv_param_6]):
             self.params['W' + str(idx+1)] = weight_init_scales[idx] * np.random.randn(conv_param['filter_num'], pre_channel_num, conv_param['filter_size'], conv_param['filter_size'])
             self.params['b' + str(idx+1)] = np.zeros(conv_param['filter_num'])
             pre_channel_num = conv_param['filter_num']
+        # 初始化全连接层的权重和偏置
         self.params['W7'] = weight_init_scales[6] * np.random.randn(64*4*4, hidden_size)
         self.params['b7'] = np.zeros(hidden_size)
         self.params['W8'] = weight_init_scales[7] * np.random.randn(hidden_size, output_size)
         self.params['b8'] = np.zeros(output_size)
 
-       
+        # 初始化网络层列表
         self.layers = []
+        # 添加卷积层和激活层
         self.layers.append(Convolution(self.params['W1'], self.params['b1'], 
                            conv_param_1['stride'], conv_param_1['pad']))
         self.layers.append(Relu())
@@ -69,8 +69,10 @@ class DeepConvNet:
         self.layers.append(Affine(self.params['W8'], self.params['b8']))
         self.layers.append(Dropout(0.5))
         
+        # 设置最后一层为SoftmaxWithLoss层
         self.last_layer = SoftmaxWithLoss()
 
+    # 定义预测方法，用于前向传播
     def predict(self, x, train_flg=False):
         for layer in self.layers:
             if isinstance(layer, Dropout):
@@ -79,10 +81,12 @@ class DeepConvNet:
                 x = layer.forward(x)
         return x
 
+    # 定义损失函数，计算网络输出与真实标签的损失
     def loss(self, x, t):
         y = self.predict(x, train_flg=True)
         return self.last_layer.forward(y, t)
 
+    # 定义准确率计算方法，计算网络在给定数据上的准确率
     def accuracy(self, x, t, batch_size=100):
         if t.ndim != 1 : t = np.argmax(t, axis=1)
 
@@ -97,20 +101,23 @@ class DeepConvNet:
 
         return acc / x.shape[0]
 
+    # 定义梯度计算方法，用于反向传播
     def gradient(self, x, t):
        
+        # 计算损失
         self.loss(x, t)
 
-       
+        # 初始化反向传播的梯度
         dout = 1
         dout = self.last_layer.backward(dout)
 
+        # 反转网络层列表，以便从后向前传播
         tmp_layers = self.layers.copy()
         tmp_layers.reverse()
         for layer in tmp_layers:
             dout = layer.backward(dout)
 
-       
+        # 计算每层的梯度
         grads = {}
         for i, layer_idx in enumerate((0, 2, 5, 7, 10, 12, 15, 18)):
             grads['W' + str(i+1)] = self.layers[layer_idx].dW
@@ -118,6 +125,7 @@ class DeepConvNet:
 
         return grads
 
+    # 定义保存参数的方法，将网络参数保存到文件中
     def save_params(self, file_name="params.pkl"):
         params = {}
         for key, val in self.params.items():
@@ -125,6 +133,7 @@ class DeepConvNet:
         with open(file_name, 'wb') as f:
             pickle.dump(params, f)
 
+    # 定义加载参数的方法，从文件中加载网络参数
     def load_params(self, file_name="params.pkl"):
         with open(file_name, 'rb') as f:
             params = pickle.load(f)
