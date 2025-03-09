@@ -1,6 +1,7 @@
 # coding: utf-8
 from layer_naive import *
 
+
 # 苹果的单价
 apple = 100
 # 苹果的数量

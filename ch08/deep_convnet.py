@@ -1,9 +1,9 @@
 # coding: utf-8
-import sys, os
-sys.path.append(os.pardir) 
+import sys
+sys.path.append('.')
+
 import pickle
 import numpy as np
-from collections import OrderedDict
 from common.layers import *
 
 

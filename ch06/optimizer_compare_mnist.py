@@ -1,7 +1,7 @@
 # coding: utf-8
-import os
 import sys
-sys.path.append(os.pardir) 
+sys.path.append('.') 
+
 import matplotlib.pyplot as plt
 from dataset.mnist import load_mnist
 from common.util import smooth_curve

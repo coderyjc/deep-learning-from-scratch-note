@@ -26,6 +26,23 @@
 
 ## 环境
 
+### IDE
+
+VsCode
+
+**关于VsCode中项目结构和导包路径的说明**
+
+VsCode中打开`deep-learning-from-scratch-note`作为项目根目录，则在任意`.py`文件中使用路径的时候，`./`指的是项目根目录，而不是相对于当前`.py`文件的目录。
+
+因此，想要在`./ch*/*.py`中导入`common`和`dataset`中的包的时候，需要将项目的根目录加载到`sys.path`中：
+
+```path
+import sys
+sys.path.append('.') 
+```
+
+### ENV
+
 - Python 3.x
 - NumPy
 - Matplotlib

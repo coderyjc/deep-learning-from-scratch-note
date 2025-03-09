@@ -1,4 +1,7 @@
 # coding: utf-8
+import sys
+sys.path.append('.')
+
 import numpy as np
 import pickle
 from dataset.mnist import load_mnist

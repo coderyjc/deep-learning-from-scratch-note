@@ -1,6 +1,7 @@
 # coding: utf-8
-import sys, os
-sys.path.append(os.pardir) 
+import sys
+sys.path.append('.')
+
 import numpy as np
 from common.layers import *
 from common.gradient import numerical_gradient
